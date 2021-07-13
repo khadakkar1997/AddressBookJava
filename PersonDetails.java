@@ -176,12 +176,7 @@ class AddressBook {
 				}System.out.println("Details deleted successfully");
 				break;
 
-				case 4: System.out.println("All Details");
-				for(int i = 0; i < count; i++) {
-					System.out.println(add[i]); }
-				break;
 				
-				default: System.out.println("You entered invalid choice");
 
 				}
 			}
