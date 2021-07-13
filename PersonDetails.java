@@ -2,7 +2,7 @@ package AddressBook;
 
 import java.util.Scanner;
 
-class PersonDetails {
+class AddressBook {
 	
 	// declared variables for contacts of Address book
 	private String firstName;
@@ -12,6 +12,18 @@ class PersonDetails {
 	private String pin;
 	private String mobileNo;
 	private String email;
+	
+	public AddressBook(String firstName, String lastName, String city, String state, String pin, String mobileNo,
+			String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.city = city;
+		this.state = state;
+		this.pin = pin;
+		this.mobileNo = mobileNo;
+		this.email = email;
+	}
 		
 	// used getters and setters for class variables
 	public String getFirstName() {
@@ -65,16 +77,14 @@ class PersonDetails {
 
  }	
 	 class AddressBookSystem {
-	 	 public AddressBookSystem(String firstName, String lastName, String city, String state, String pin,
-				String mobileNo, String email) {
-			
-		}
+	 	 
 
+		@SuppressWarnings("unused")
 		public static void main(String[] args) {
 			System.out.println("Welcome to Address book Program");
 			Scanner sc = new Scanner(System.in);
-             
-			AddressBookSystem add[] = new AddressBookSystem[10];
+
+			AddressBook add[] = new AddressBook[10];
 			int count = 0;
 			String firstName;
 			String lastName;
@@ -87,7 +97,7 @@ class PersonDetails {
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
 
-			System.out.println("1. Add Details 2. Update Details ");
+			System.out.println("1. Add Details 2. Update Details 3. Delete Details");
 
 			while(true) {
 				switch(choice) {
@@ -109,28 +119,54 @@ class PersonDetails {
 					mobileNo = sc.next();
 					System.out.println("Enter Email Id");
 					email = sc.next();
-					sc.close();
-					add[count] = new AddressBookSystem(firstName, lastName, city, state, pin, mobileNo, email); 
+
+					add[count] = new AddressBook(firstName, lastName, city, state, pin, mobileNo, email); 
 					count++;
 					break; }
 				System.out.println("Details added successfully");
+
+				case 2: System.out.println("Update Details");
+				System.out.println("Enter first name which you want to update");
+				firstName = sc.next();
+				for(int i = 0; i < count; i++) {
+					if(add[i] != null && add[i].getFirstName()==firstName) {
+
+						System.out.println("Enter first name and last name");
+						firstName = sc.next();
+						add[i].setFirstName(firstName);
+
+						lastName = sc.next();
+						add[i].setLastName(lastName);
+
+						System.out.println("Enter city");
+						city = sc.next();
+						add[i].setCity(city);
+
+						System.out.println("Enter state");
+						state = sc.next();
+						add[i].setState(state);
+
+						System.out.println("Enter pin");
+						pin = sc.next();
+						add[i].setPin(pin);
+
+						System.out.println("Enter Mobile number");
+						mobileNo = sc.next();
+						add[i].setMobileNo(mobileNo);
+
+						System.out.println("Enter Email Id");
+						email = sc.next();
+						sc.close();
+						add[i].setEmail(email);
+						break; 
+						
+					}
+				}
+				System.out.println("Details updated successfully");
 
 				}
 			}
 
 		}
-	 
-	 }		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-	
-	
+
+	}
